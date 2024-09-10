@@ -1,14 +1,13 @@
-# cstad_ite2_debezium_docker_compose_latest
-My Configure for Deploy Debezium Service.
-- Link notion: https://rogue-consonant-00a.notion.site/Deploy-Debezium-32efed8d10fb4585a1de87ac7dd14b15?pvs=74
+# 💥My Configure for Deploy Debezium Service.
+👉 Link notion: https://rogue-consonant-00a.notion.site/Deploy-Debezium-32efed8d10fb4585a1de87ac7dd14b15?pvs=74
 
-# Kafka Ecosystem Docker Compose Setup
+# 🌀Kafka Ecosystem Docker Compose Setup
 
-This setup provides an ecosystem using Docker Compose, including Zookeeper, Kafka Broker, Debezium, Schema Registry, Kafka REST Proxy, Debezium UI, and PostgreSQL. This is particularly useful for streaming data from PostgreSQL to Kafka using Debezium.
+👉 This setup provides an ecosystem using Docker Compose, including Zookeeper, Kafka Broker, Debezium, Schema Registry, Kafka REST Proxy, Debezium UI, and PostgreSQL. This is particularly useful for streaming data from PostgreSQL to Kafka using Debezium.
 
-# Services Overview
+# ⭕Services Overview
 
-1. Zookeeper
+👉 Zookeeper
   - Image:`confluentinc/cp-zookeeper:7.3.1`
   - Purpose: Coordinates and manages Kafka brokers.
   - Ports: 
@@ -16,7 +15,7 @@ This setup provides an ecosystem using Docker Compose, including Zookeeper, Kafk
   - Healthcheck: Check if the Zookeeper service is reachable on port 2181.
   - Network: `kafka-network`.
 
-2. Kafka Broker
+👉 Kafka Broker
   - Image: `confluentinc/cp-kafka:7.3.1`
   - Purpose: Manages message streaming and replication.
   - Ports: 
@@ -30,7 +29,7 @@ This setup provides an ecosystem using Docker Compose, including Zookeeper, Kafk
   - Healthcheck: Verifies that the broker is reachable on port 9092.
   - Network: `kafka-network`.
 
-3. Debezium
+👉 Debezium
     - Image: `debezium/connect:latest`
     - Purpose: Connects to the Kafka broker to capture changes from databases (e.g., PostgreSQL) and publish them to Kafka topics.
     - Ports:
@@ -41,7 +40,7 @@ This setup provides an ecosystem using Docker Compose, including Zookeeper, Kafk
     - Healthcheck: Checks if the Debezium connector is available by accessing `/connectors`.
     - Network: `kafka-network`.
 
-4. Schema Registry
+👉 Schema Registry
   - Image: `confluentinc/cp-schema-registry:7.3.1`
   - Purpose: Stores and retrieves schemas for Kafka topics.
   - Ports: 
@@ -52,7 +51,7 @@ This setup provides an ecosystem using Docker Compose, including Zookeeper, Kafk
   - Healthcheck: Verifies availability of Schema Registry by querying `/subjects`.
   - Network: `kafka-network`.
 
-5. Kafka REST Proxy
+👉 Kafka REST Proxy
   - Image: `confluentinc/cp-kafka-rest:7.3.1`
   - Purpose: Provides a RESTful interface to interact with Kafka topics.
   - Ports: 
@@ -62,7 +61,7 @@ This setup provides an ecosystem using Docker Compose, including Zookeeper, Kafk
     - Listens on all network interfaces (`KAFKA_REST_LISTENERS`).
   - Network: `kafka-network`.
 
-6. Debezium UI
+👉 Debezium UI
   - Image: `debezium/debezium-ui:latest`
   - Purpose: Web UI for managing and monitoring Debezium connectors.
   - Ports: 
@@ -71,7 +70,7 @@ This setup provides an ecosystem using Docker Compose, including Zookeeper, Kafk
     - Connects to the Debezium Kafka Connect API (`KAFKA_CONNECT_URIS`).
   - Network: `kafka-network`.
 
-7. PostgreSQL
+👉 PostgreSQL
   - Image: `postgres:latest`
   - Purpose: PostgreSQL database configured to support logical replication for Debezium.
   - Ports: 
@@ -83,12 +82,23 @@ This setup provides an ecosystem using Docker Compose, including Zookeeper, Kafk
   - Healthcheck: Checks PostgreSQL health by running a simple SQL query.
   - Network: `kafka-network`.
 
-# Networks
+# ⭕Networks
 
-- kafka-network: 
+- `kafka-network`: 
   - Custom bridge network for all services to communicate with each other.
 
-# Volumes
+# ⭕Volumes
 
-- **postgres-data:** 
+- `postgres-data`:
   - A local volume used for PostgreSQL data storage.
+
+# ⭕Usage
+
+- Create a directory. example `debezium`
+- `cd debezium` to create a `docker-compose.yml` file.
+- Copy configuration in notion and edit the request value in `<example>`.
+- Paste into the `docker-compose.yml` file.
+- Use the command `docker compose up -d` to up your container.
+- To create a connector you can create a request in Postman `POST` request with this URI `http://<your host IP or localhost>/connectors`.
+- To successfully create a connector, you need to specify the database and table that you already have.
+- After you create a connector it will create a topic for you, you can use it to consume data from your database. Thank you 🙏
