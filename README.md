@@ -99,6 +99,8 @@
 - Copy configuration in notion and edit the request value in `<example>`.
 - Paste into the `docker-compose.yml` file.
 - Use the command `docker compose up -d` to up your container.
-- To create a connector you can create a request in Postman `POST` request with this URI `http://<your host IP or localhost>/connectors`.
+- To create a connector you can create a request in Postman `POST` request with this URI `http://<your host IP: Port or localhost>/connectors`.
+- Use Body with row.
 - To successfully create a connector, you need to specify the database and table that you already have.
+- You find my body to create a connector in my notion.
 - After you create a connector it will create a topic for you, you can use it to consume data from your database. Thank you 🙏
