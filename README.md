@@ -30,15 +30,15 @@
   - Network: `kafka-network`.
 
 👉 Debezium
-    - Image: `debezium/connect:latest`
-    - Purpose: Connects to the Kafka broker to capture changes from databases (e.g., PostgreSQL) and publish them to Kafka topics.
-    - Ports:
-      - Exposes port `8083` for Kafka Connect API.
-    - Environment Variables:
-      - Defines Kafka broker (`BOOTSTRAP_SERVERS`), storage topics, and JSON converters.
-      - Enables scripting support for transformations.
-    - Healthcheck: Checks if the Debezium connector is available by accessing `/connectors`.
-    - Network: `kafka-network`.
+  - Image: `debezium/connect:latest`
+  - Purpose: Connects to the Kafka broker to capture changes from databases (e.g., PostgreSQL) and publish them to Kafka topics.
+  - Ports:
+    - Exposes port `8083` for Kafka Connect API.
+  - Environment Variables:
+    - Defines Kafka broker (`BOOTSTRAP_SERVERS`), storage topics, and JSON converters.
+    - Enables scripting support for transformations.
+  - Healthcheck: Checks if the Debezium connector is available by accessing `/connectors`.
+  - Network: `kafka-network`.
 
 👉 Schema Registry
   - Image: `confluentinc/cp-schema-registry:7.3.1`
